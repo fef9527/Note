@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Hello Git3</title>
+</head>
+<body>
+1.	初始化，會建立一個隱藏資料夾，要看到須至檢視-勾選隱藏的項目
+	git init
+2.	觀察Repository檔案追蹤狀況
+	git status
+3.	將檔案加入追蹤(index)清單
+	git add 檔名 
+	git add .  (把所有改過的程式、檔案都加入)
+4.	建立一組版本更新(Commitment)
+	git commit -m"版本更新訊息"
+5.	查看分支(Branch)
+	git branch
+6.	查看先前版本紀錄
+	git log
+
+命令提示字元
+切換磁碟機 D: (移動到D)
+切換到資料夾cd 路徑
+
+GitHub雲端專案管理(Cloud Git Repository)
+如何上傳資料到雲端
+
+1.	查詢遠端Repository
+	git remote -v
+2.	加入遠端的Repository(第一次用會需要輸入帳號密碼認證)
+	git remote add 遠端空間名稱 網址
+3.	上傳到GitHub
+	git push 遠端空間名稱 遠端空間的分支
+
+
+1. 從雲端下載
+	git clone 遠端空間的網址 本地資料夾名稱
+
+2. 從GitHub雲端專案下載合併更新
+	git pull 遠端空間的名稱 遠端空間的分支
+
+</body>
+</html>
