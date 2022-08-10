@@ -1,0 +1,8 @@
+----降板
+
+1. 檢視當前的 庫 版本
+   開啟終端，輸入pip show 庫
+2. 刪除當前python下的selenium版本
+
+3. 重新安裝指定版本
+   install selenium==2.53.6
