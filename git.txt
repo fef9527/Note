@@ -28,7 +28,7 @@ GitHub雲端專案管理(Cloud Git Repository)
 
 
 1. 從雲端下載
-	git clone 遠端空間的網址 本地資料夾名稱
+	git clone 遠端空間的網址 本地資料夾名稱(自行命名)
 
 2. 從GitHub雲端專案下載合併更新
 	git pull 遠端空間的名稱 遠端空間的分支

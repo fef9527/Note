@@ -1,0 +1,108 @@
+https://cinna.tw/%e6%96%b0%e6%89%8b%e6%95%99%e5%ad%b8%e7%b3%bb%e5%88%97/%e4%bd%9c%e8%80%85%e8%b6%85%e5%9b%89%e5%97%a6%ef%bc%8c%e4%bd%86%e4%b8%80%e5%a4%a9%e5%8f%aa%e8%a6%81%e5%8d%81%e5%88%86%e9%90%98%e7%9a%84mysql%e7%9c%9f%ef%bc%8e%e6%96%b0%e6%89%8b%e6%95%99%e5%ad%b8/%e8%b3%87%e6%96%99%e7%af%a9%e9%81%b8%e8%b6%b4%e4%b8%89%ef%bc%9abetween-%e3%80%81like%e8%88%87null
+
+關聯式資料庫(SQL):MySQL、Oracle、PostgreSQL，關聯式資料庫管理系統(RDBMS)
+非關聯式資料庫(noSQL、not just SQL):MogoDB、Redis、DynamoDB、Elaticsearch，非關聯式資料庫管理系統(NRDBMS)
+
+---資料型態:------------------------------------------------------------------------------
+1.INT          --整數
+2.DECIMAL(m,n) --有小數點的樹(m總共幾位數，n小數點後幾位)
+3.VARCHAR(n)   --字串(n代表最多存放幾個字元)
+  CHAR 　     定長 英文 1 Byte，非英文2 Byte
+  VARCHAR　　 變長　英文 1 Byte，非英文2 Byte
+  NCHAR 　　　定長 無論中英文都是2 Byte
+  NVARCHAR　　變長 無論中英文都是2 Byte  
+
+(有N的代表Unicode，無論是否英文都是用2 Byte儲存；
+沒有N的話，就照英文1Byte，非英文2 Byte，但沒有N卻中英文混和容易出問題，
+所以如果沒辦法肯定欄位只會有英文的話，還是用有N的吧！
+有VAR的代表是變長，輸入多少字，就占多少儲存空間；
+沒有VAR的代表是定長，假設是NCHAR(10)，無論你輸入多少字，
+都會占10 Bytes，你輸入兩個中文，系統會幫你補六個空白；)
+4.BLOB         --(Binary Large Object)圖片、影像、檔案...
+5.'
+  --DATE 日期，年月日，例如:"2020-09-18"
+  --TIME　時間，小時分秒，例如:"20:00:53"
+  --DATETIME 日期和時間，例如:"2020-09-18 20:00:53"
+6.TIMESTAMP    --'YYYY-MM-DD HH:MM:SS' 紀錄時間
+7.MySQL沒有布林型別，但可以輸入BOOLEAN，MySQL替換成TINYINT(1)。
+  對TINYINT(1)而言，輸入0就是FALSE，其餘數字都是TRUE。
+
+---資料庫操作-------------------------------------------------------------------------------
+1.database creation 
+ 建立資料庫
+  CREATE DATABASE `資料庫名稱` ;
+
+
+2.deletion
+  DROP DATABASE `資料庫名稱` ;
+3.fetching rows
+
+4.modifying rows
+
+
+
+
+---表格操作-----------------------------------------------------------------------------------
+1.建立表格
+  CREATE TABLE `表格名稱`
+2.刪除表格
+  DROP `表格名稱`
+3.查看表格
+  DESCRIBE `student`;
+4.新增column
+  ALTER TABLE `表格名稱` ADD 欄位名稱 DECIMAL(3,2);
+5.刪除column
+  ALTER TABLE `表格名稱` DROP COLUMN 欄位名稱;
+6.設置PRIMARY key
+  -`欄位名稱` xxx PRIMARY key
+  -PRIMARY key(`欄位名稱`)
+ (PRIMARY KEY 主鍵
+  UNIQUE　唯一值
+  NOT NULL　不可以是空值
+  CLUSTERED INDEX　索引：讓資料系統更快找到資料
+  一張資料表一個主鍵
+  一個主鍵可包含一或多個欄位（組合鍵）
+  別人的外來鍵)
+
+
+7.存入(INSERT)資料
+  INSERT INTO `資料庫`.`資料表` (`欄位1`, `欄位2`, `欄位3`, `欄位4`) VALUES ('值1', '值2', '值3', '值4');
+8.取得(SELECT)資料
+  --SELECT * FROM `表格名稱`;                     (取得指定表格所有資料)
+  --SELECT `欄位名稱` FROM `表格名稱`;             (取得指定表格中指定欄位的資料)
+  --SELECT * FROM `表格名稱` ORDER BY `欄位名稱`; (依照指定欄位做排序)
+
+9.表格資料限制(Constraint)
+  --`name` VERCHAR(20) NOT NULL;  (欄位內容不得為空)
+  --`name` VERCHAR(20) UNIQUE;    (唯一值，不能重複)
+  --`name` VERCHAR(20) DEFAULT "";(若未填入則為預設值)
+
+10.自動累加(AUTO_INCREMENT)，標註AUTO_INCREMENT的欄位，系統會自動生成欄位值，生成規則是第一筆是0，第二筆是1，一直累加上去。
+  "欄位名稱" INT AUTO_INCREMENT, (可以不用手動填入)
+
+11.修改(UPDATE)資料
+ ***SET SQL_SAFE_UPDATES = 0; 關閉自動更新否則會出錯
+
+UPDATE  `表格名稱`
+SET `欄位名稱` = "生物史"
+WHERE `欄位名稱` = "生物"; (將內容為生物的資料改為生物史)
+
+12.刪除(DELETE)資料
+
+DELETE FROM `表格名稱`
+WHERE `name` = "小黑"; (將資料為小黑的欄位刪除)
+
+13.DISTINCT去除重複資料(可用來計算有幾種不同的資料)
+  SELECT DISTINCT 欄位 FROM 資料表;
+14.資料篩選
+   = 等於、!=不等於、<、>
+   SELECT * FROM 資料表 WHERE 欄位 判斷符號 值;
+
+other command
+1.列出資料庫中所有資料庫
+  SHOW databases;
+2.使用資料庫
+  USE `資料庫名稱`；
+3.列出表格
+  DESCRIBE `欄位名稱`
+
